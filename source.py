@@ -4,7 +4,8 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import time
 from datetime import datetime
-IFTTT_WEBHOOKS_URL = 'https://maker.ifttt.com/trigger/{}/with/key/1425528121:AAHSO5oXC3bSv7aiEyTbMjgiOLiN9AB9Yks'
+IFTTT_WEBHOOKS_URL = 'https://maker.ifttt.com/trigger/{}/with/key/cUYPycJW3600wZh-sR0hi3pzJnm7Od5xgEhuPjEaIJP'
+BITCOIN_API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC&convert=USD'
 def get_latest_bitcoin_price():
     BITCOIN_API_URL = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC&convert=USD'
     headers = {
@@ -33,7 +34,7 @@ def post_ifttt_webhook(event, value):
     # Sends a HTTP POST request to the webhook URL
     requests.post(ifttt_event_url, json=data)
 
-BITCOIN_PRICE_THRESHOLD = 17000  # Set this to whatever you like
+BITCOIN_PRICE_THRESHOLD = 200000  # Set this to whatever you like
 def format_bitcoin_history(bitcoin_history):
     rows = []
     for bitcoin_price in bitcoin_history:
@@ -71,7 +72,7 @@ def main():
 
         # Sleep for 5 minutes 
         # (For testing purposes you can set it to a lower number)
-        time.sleep(5 * 60)
+        time.sleep(0.05 * 60)
 
 if __name__ == '__main__':
     main()
